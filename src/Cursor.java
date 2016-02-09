@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-
+//The cursor of the screensaver
 public class Cursor {
 	private int radius = 20;
 	private int x, y, centerX, centerY;
@@ -14,7 +14,6 @@ public class Cursor {
 	public Cursor(int width, int height, Color initial){
 		pathX = (int)(width/9) + (int) (Math.random()*height/9);
 		pathY = (int)(height/9) + (int) (Math.random()*width/9);
-		System.out.println(pathX + " " + pathY);
 		centerX = width/2;
 		centerY = height/2;
 		x = centerX;
@@ -25,6 +24,7 @@ public class Cursor {
 		hsb = Color.RGBtoHSB(rgb[0], rgb[1], rgb[2], hsb);
 	}
 	
+	//updates color of the cursor
 	public void changeColor(){
 		double changeSpeed = 0.007;
 		hsb[0]+= changeSpeed;
@@ -34,6 +34,7 @@ public class Cursor {
 		rgb[2] = temp & 0xFF;
 	} 
 	
+	//increments the cursor at each iteration
 	public void incrementCursor(){
 		counter++;
 		changeColor();
@@ -41,6 +42,7 @@ public class Cursor {
 		y = (int) (centerY + (centerY-100)*Math.cos(Math.PI * counter/pathY));
 	}
 	
+	//draws the cursor using the graphics object
 	public void drawCursor(Graphics g){
 		for(int r = radius; r > 0; r--){
 			g.setColor(new Color((int)(rgb[0]*Math.cos(Math.PI*r/(radius*2.2))), (int)(rgb[1]*Math.cos(Math.PI*r/(radius*2.2))), (int)(rgb[2]*Math.cos(Math.PI*r/(radius*2.2)))));
@@ -48,12 +50,14 @@ public class Cursor {
 		}
 	}
 	
-	public Spark poopSpark(){
+	//cursor emits spark using current location
+	public Spark emitSpark(){
 		//poopSpark(posX, posY, angle, velocity, color)
 		return new Spark(x, y, 2*Math.PI*Math.random(), 1+5*Math.random(), new Color(rgb[0], rgb[1], rgb[2]));
 	}
 	
-	public Pulse poopPulse(int level){
+	//cursor emits pulse using current location
+	public Pulse emitPulse(int level){
 		//poopPulse(x, y , velocity, color);
 		return new Pulse(x, y, level/5, new Color(rgb[0], rgb[1], rgb[2]));	
 		}

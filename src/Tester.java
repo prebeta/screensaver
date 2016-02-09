@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 
 @SuppressWarnings("serial")
+//instantiation of the screensaver
 public class Tester extends JFrame{
 	public Tester(){
 		super("Fullscreen");

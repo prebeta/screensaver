@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-
+//Sparks fly in all directions around cursor position
 public class Spark {
 	private double angle, velocity; 
 	private int x, y;
@@ -20,6 +20,7 @@ public class Spark {
 		hsb = Color.RGBtoHSB(rgba[0], rgba[1], rgba[2], hsb);
 	}
 	
+	//called at each iteration
 	public void incrementSpark(){
 		x = (int) (Math.cos(angle) * velocity + x);
 		y = (int) (Math.sin(angle) * velocity + y);
@@ -27,6 +28,7 @@ public class Spark {
 		changeColor();
 	}
 	
+	//colors decay to black
 	public void changeColor(){
 		double changeSpeed = 0.0025;
 		hsb[0]+= changeSpeed;
@@ -37,6 +39,7 @@ public class Spark {
 		rgba[3] *= 0.95;
 	}
 	
+	//graphics rendering of spark
 	public void drawSpark(Graphics g){
 		for(int radius = 5 ; radius > 1; radius--){
 			g.setColor(new Color(rgba[0]/(radius/2), rgba[1]/(radius/2), rgba[2]/(radius/2), rgba[3]));

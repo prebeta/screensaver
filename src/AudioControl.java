@@ -1,4 +1,3 @@
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -23,9 +22,7 @@ public class AudioControl{
 			System.exit(0);
 		}//end catch
 	}
-	//This method captures audio input
-	// from a microphone and saves it in
-	// a ByteArrayOutputStream object.
+	//This method captures audio input from a microphone and saves it in a ByteArrayOutputStream object
 	public int getAudio(){
 		int level = 0;
 		try{
@@ -36,7 +33,7 @@ public class AudioControl{
 		} catch (Exception e) {
 			System.out.println(e);
 			System.exit(0);
-		}//end catch
+		}
 		return level;
 	}
 
@@ -52,8 +49,7 @@ public class AudioControl{
 		boolean bigEndian = true;
 		//true,false
 		return new AudioFormat(sampleRate,sampleSizeInBits,channels,signed,bigEndian);
-	}//end getAudioFormat
-	//===================================//
+	}
 
 	public int calculateRMSLevel(byte[] audioData)
 	{ // audioData might be buffered data read from a data line
